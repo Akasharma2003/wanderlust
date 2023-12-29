@@ -1,0 +1,133 @@
+<% layout("/layouts/boilerplate") %>
+
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+    .contact-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20rem;
+        margin-top: 3rem;
+    }
+   
+    .address{
+      display: flex;
+      align-items: center;
+        margin-bottom: 3rem;
+    }
+    .address i{
+        font-size: 1.5rem;
+        margin-right: 2rem;
+        text-align: center;
+        color: #fe424d;
+    }
+    .address-details h5{
+        font-weight: 100;
+        font-size: 1.3rem;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .address-details p{
+        font-size: 1rem;
+    }
+
+.contact-form form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+   
+    .contact-form h1{
+        color: #fe424d;
+        font-size: 2rem;
+        font-family: 'Playfair Display', serif;
+        letter-spacing: 1px;
+    }
+
+    .contact-form input{
+        margin-top: 1rem;
+        height: 2.5rem;
+        width: 65vh;
+        padding: 1rem;
+        border-radius: 0.3rem;
+        border: 1px solid gray;
+    }
+    .contact-form input,textarea::placeholder{
+        color: rgb(58, 53, 53);
+         font-size: 1rem;
+    }
+    .contact-container textarea{
+        padding: 1rem;
+        border: 1px solid gray;
+    }
+   
+    .contact-form textarea{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .contact-form button{
+        width: 25vh;
+        height: 7vh;
+        padding: auto;
+        white-space: nowrap;
+    }
+
+
+    @media screen and (max-width:775px) {
+          .contact-container{
+            display: flex;
+            flex-direction: column;
+            gap:5rem
+          }
+    }
+
+
+   
+
+
+</style>
+
+<div class="contact-container">
+    <div class="contact-detail">
+        <div class="address">
+            <i class="fa-solid fa-house"></i>
+            <div class="address-details">
+                <h5>ABC Rpad,XYZ building</h5>
+                <p>Monday To Saturday, 10AM To 6PM</p>
+            </div>
+        </div>
+
+        <div class="address">
+            <i class="fa-solid fa-phone"></i>
+            <div class="address-details">
+                <h5>+9999444222</h5>
+                <p>Agra,Uttar-Pradesh,IN</p>
+            </div>
+        </div>
+
+        <div class="address">
+            <i class="fa-solid fa-envelope"></i>
+            <div class="address-details">
+                <h5>nox@gmail.com</h5>
+                <p>Email us your query</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="contact-form">
+         <h1>Leave A Comment</h1>
+         <form action="/listings/contact" method="post" >
+         <input type="text" name="name" placeholder="Enter Your Name" autocomplete="off" autofocus>
+         <input type="email" placeholder="Enter Email Address" name="email" autocomplete="off">
+         <input type="text" placeholder="Enter Your Subject" name="subject" autocomplete="off">
+         <textarea name="message"  cols="30" rows="5" autocomplete="off" placeholder="Enter your Message" ></textarea>
+         <button class="btn btn-outline-danger"> Send Message </button>
+         </form>
+    </div>
+</div>

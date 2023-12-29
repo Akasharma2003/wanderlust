@@ -1,0 +1,222 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+
+  
+  .filter::after {
+    content: "";
+    height: 2px;
+    width: 0%;
+    background-color: white;
+    display: block;
+    transition: 0.5s ease-in-out;
+  }
+
+  .filter:hover::after {
+    content: "";
+    height: 1px;
+    display: block;
+    width: 100%;
+    background-color: black;
+  }
+  .filter:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+  .filter p {
+    font-size: 0.8rem;
+  }
+  .tax-info {
+    display: none;
+  }
+
+  .tax-toggle {
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3.5rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+    margin-top: 0.8rem;
+    white-space: nowrap;
+  }
+ 
+  .wrapper {
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  .wrapper .filters {
+    display: flex;
+    max-width: 65%;
+    gap: 1.5rem;
+    white-space: nowrap;
+    margin-top: 1.5rem;
+    text-align: center;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+  .wrapper .icon {
+    position: relative;
+    top: 1.4rem;
+    height: 100%;
+    width: 4rem;
+    display: flex;
+    align-items: center;
+  }
+  .icon:first-child {
+    left: 0;
+     visibility: hidden;
+    background: linear-gradient(90deg, #fff 70%, transparent);
+  }
+  .icon:last-child {
+    right: 0;
+    justify-content: flex-end;
+    background: linear-gradient(-90deg, #fff 70%, transparent);
+  }
+
+  .icon i {
+    width: 2.5rem;
+    height: 2.5rem;
+    text-align: center;
+    line-height: 2.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  .icon:first-child i {
+    margin-left: 0.7rem;
+  }
+  .icon:last-child i {
+    margin-right: 0.7rem;
+  }
+  .icon i:hover {
+    background-color: #efedfb;
+  }
+  .filters .dragging {
+    scroll-behavior: auto;
+    cursor: grab;
+  }
+
+  @media screen and (max-width: 775px) {
+      .tax-toggle{
+        display: none;
+      }
+      .filters{
+        max-width: 100%;
+      }
+  }
+</style>
+
+<div class="wrapper">
+  <div class="icon"><i id="left" class="fa-solid fa-angle-left"></i></div>
+  <div class="filters">
+    <div class="filter">
+      <a href="/listings/filter/Trending" class="listing-link">
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+      </a>
+    </div>
+    <div class="filter">
+      <a href="/listings/filter/Rooms" class="listing-link">
+        <div><i class="fa-solid fa-bed"></i></div>
+        <p>Rooms</p>
+      </a>
+    </div>
+    <div class="filter">
+      <a href="/listings/filter/Iconic City" class="listing-link">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Iconic City</p>
+      </a>
+    </div>
+    <div class="filter">
+      <a href="/listings/filter/Mountain" class="listing-link">
+        <div><i class="fa-solid fa-mountain"></i></div>
+        <p>Mountain</p>
+      </a>
+    </div>
+    <div class="filter">
+      <a href="/listings/filter/Castles" class="listing-link">
+        <div><i class="fa-brands fa-fort-awesome"></i></div>
+        <p>Castles</p>
+      </a>
+    </div>
+    <div class="filter">
+      <a href="/listings/filter/Amazing Pools" class="listing-link">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Amazing Pools</p>
+      </a>
+    </div>
+    <div class="filter">
+      <a href="/listings/filter/Camping" class="listing-link">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+      </a>
+    </div>
+    <div class="filter">
+      <a href="/listings/filter/Farms" class="listing-link">
+        <div><i class="fa-solid fa-cow"></i></div>
+        <p>Farms</p>
+      </a>
+    </div>
+    <div class="filter">
+      <a href="/listings/filter/Arctic" class="listing-link">
+        <div><i class="fa-solid fa-snowflake"></i></div>
+        <p>Arctic</p>
+      </a>
+    </div>
+    <div class="filter">
+      <a href="/listings/filter/Domes" class="listing-link">
+        <div><i class="fa-solid fa-igloo"></i></div>
+        <p>Domes</p>
+      </a>
+    </div>
+    <div class="filter">
+      <a href="/listings/filter/Boats" class="listing-link">
+        <div><i class="fa-solid fa-ship"></i></div>
+        <p>Boats</p>
+      </a>
+    </div>
+  </div>
+  <div class="icon"><i id="right" class="fa-solid fa-angle-right"></i></div>
+  <div class="tax-toggle">
+    <div class="form-check-reverse form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="flexSwitchCheckDefault"
+      />
+      <label class="form-check-label" for="flexSwitchCheckDefault"
+        >Display total after taxes</label
+      >
+    </div>
+  </div>
+</div>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+  <% for(let listing of allListing){%>
+  <a href="/listings/<%= listing.id %>" class="listing-link">
+    <div class="card col show-card">
+      <img
+        class="card-img-top"
+        style="height: 20rem"
+        src="<%= listing.image.url %>"
+      />
+      <div class="card-img-overlay"></div>
+      <div class="card-body">
+        <p class="card-text">
+          <b> <%= listing.title %> </b> <br />
+          &#8377; <%= listing.price.toLocaleString("en-IN") %> /night
+          <i class="tax-info">&nbsp;&nbsp; +18 % GST</i>
+        </p>
+      </div>
+    </div>
+  </a>
+  <%}%>
+</div>
+
+
+

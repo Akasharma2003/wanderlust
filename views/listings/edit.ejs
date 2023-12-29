@@ -1,0 +1,89 @@
+<% layout("/layouts/boilerplate") %>
+
+    <body>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <br>
+                <h3>Edit your List</h3>
+                <form action="/listings/<%= listing.id %>?_method=PUT" method="post" novalidate
+                    class="needs-validation" enctype="multipart/form-data">
+                    <div class="mb-3">
+
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" id="title" name="listing[title]" placeholder="Enter title"
+                            value="<%= listing.title %>" class="form-control" autofocus autocomplete="off" required>
+                        <div class="valid-feedback">Title looks good</div>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="listing[description]" id="description" class="form-control"
+                            placeholder="Enter description" autocomplete="off"
+                            required><%= listing.description %></textarea>
+                        <div class="invalid-feedback">Please enter a short description</div>
+                    </div>
+
+                    <div class="mb-3">
+                        Original Listing Image  <br>
+                        <img src="<%= originalImageUrl %>">
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label for="image" class="form-label">Upload New Image</label>
+                        <input type="file"  class="form-control" id="image" name="listing[image]">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Select Category</label>
+                        <select class="form-select" aria-label="Default select example" id="category" name="listing[category]" required>
+                            <option selected>Select Category</option>
+                            <option value="Trending">Trending</option>
+                            <option value="Rooms">Rooms</option>
+                            <option value="Iconic City">Iconic City</option>
+                            <option value="Mountain">Mountain</option>
+                            <option value="Castles">Castles</option>
+                            <option value="Amazing Pools">Amazing Pools</option>
+                            <option value="Camping">Camping</option>
+                            <option value="Farms">Farms</option>
+                            <option value="Arctic">Arctic</option>
+                            <option value="Domes">Domes</option>
+                            <option value="Boats">Boats</option>
+                          </select>
+                       </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-md-4">
+
+                            <label for="Price" class="form-label">Price</label>
+                            <input type="number" name="listing[price]" class="form-control" value="<%= listing.price %>"
+                                placeholder="1200" id="Price" autocomplete="off" required>
+                            <div class="invalid-feedback">Price should be valid</div>
+
+                        </div>
+
+                        <div class="mb-3 col-md-8">
+
+                            <label for="Country" class="form-label">Country</label>
+                            <input type="text" name="listing[country]" id="Country" class="form-control"
+                                value="<%= listing.country %>" placeholder="India" autocomplete="off" required>
+                            <div class="invalid-feedback">Country name should be valid</div>
+
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label for="Location" class="form-label">Location</label>
+                        <input type="text" name="listing[location]" id="Location" class="form-control"
+                            value="<%= listing.location %>" placeholder="Firozabad" autocomplete="off" required>
+                        <div class="invalid-feedback">Location should be valid</div>
+
+                    </div>
+
+                    <button class="btn btn-dark edit-btn">Edit</button>
+                </form>
+            </div>
+        </div>
+    
